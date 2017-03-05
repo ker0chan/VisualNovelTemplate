@@ -5,6 +5,8 @@
 Code and documentation: [@ker0chanFR](https://twitter.com/ker0chanFR)
 
 Characters and background art: [@LtEmi](https://twitter.com/LtEmi)
+
+[Demo/Tutorial/Example](https://ker0chan.github.io/VisualNovelTemplate) (yes, it's everything at once)
 ___
 # Disclaimer
 Keep in mind that this was intended as a template/boilerplate code base to get a project started on the right tracks, rather than as a full-fledged engine. If your project needs features that differ completely from those presented here, you might want to dig into the code and add them yourself (or with the help of a programmer). Custom actions and stylesheets can give pretty good results to some extent, but reworking the core of the engine will probably be more stable/scalable/optimized in the long run.
