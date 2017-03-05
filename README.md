@@ -1,13 +1,40 @@
 # Visual Novel Template Documentation
 
-![Screenshot](/img/screenshot.png?raw=true)
+![Screenshot](/img/screenshot.PNG?raw=true)
+
 Code and documentation: [@ker0chanFR](https://twitter.com/ker0chanFR)
+
 Characters and background art: [@LtEmi](https://twitter.com/LtEmi)
 ___
 # Disclaimer
 Keep in mind that this was intended as a template/boilerplate code base to get a project started on the right tracks, rather than as a full-fledged engine. If your project needs features that differ completely from those presented here, you might want to dig into the code and add them yourself (or with the help of a programmer). Custom actions and stylesheets can give pretty good results to some extent, but reworking the core of the engine will probably be more stable/scalable/optimized in the long run.
 
 It's also largely untested, most of the code was recycled from a previous project of mine, and cleaned up/reorganized to be more user-friendly and easy to dive into. Some features have been added in the process, but I haven't had the chance to test them for a real project yet. Expect bugs, missed opportunities and a positive amount of disappointment.
+
+# Getting started
+The engine currently handles stories written in [Yarn](https://github.com/InfiniteAmmoInc/Yarn), and exported as a JSON file. Yarn is a dialogue editor that helps you build nodes and branching trees in a visual way, similar to Twine. In this template, a specific script syntax (**that slightly differs from the standard Yarn syntax**) is used, in order to provide an easy access to the features needed in a visual novel game. Check out the scripting syntax below for more information.
+The characters and places data are stored as JSON files that need to be edited by hand. Using a JSON editor (like http://www.jsoneditoronline.org/) or a text editor with syntax highlighting (Notepad++, Sublime Text) is strongly recommended.
+
+## Quickstart instructions
+* Download this project as a [zip file](https://github.com/ker0chan/VisualNovelTemplate/archive/master.zip), or clone the repository
+* Save your story in `data/story.json`
+* Define your characters in `data/characters.json`
+* Define your places in `data/places.json`
+* Edit `css/scene.css` to define the appearance (position, size) of your characters (optional)
+* Edit `index.html` and `end.html` to create your own menu and ending screens (optional for now, but you should at least give a name to your game!)
+
+## Testing your game
+* If you are creating your game in an offline environement ("I am not a coder"):
+    * Launch `build.bat`. This will compile your JSON files into a single javascript file that will be loaded in the page. **You will need to do this everytime you change the content of the JSON files or your story, for the changes to appear in the game.** This might only work for Windows users. Sorry.
+    * Open `index.html` in your web browser to start the game, or open `game.html` to skip the menu page. 
+* If you are creating your game in a server environement ("I am a coder" or "I'm tired of launching the build script every 5 seconds" or "I'm using a Mac and the build script only works on Windows"):
+    * Edit `main.js` and follow the instructions to enable asynchronous data loading.
+    * Go to `your_server_address/index.html` in your browser to start the game, or `your_server_address/game.html` to skip the menu page.
+
+## Distributing your game
+Once you're done creating your game (🎉🎉🎉 congratulations 🎉🎉🎉), you might want to make it available online and show it to the world. As a web-based game, it simply needs to be hosted somewhere: a personal website or a game hosting website like [itch.io](http://itch.io) or [Gamejolt](http://gamejolt.com) for example.
+Specific instructions for these platforms can be found on their respective website, but the usual steps will require you to package all your files in a zip archive. Make sure you put all the game files in the archive. You don't have to include `build.dat` or this instructions file, the game will run without them.
+
 
 # Lexicon
 **Node**: **The building block of your story**. This is the visual thing you see in Yarn, it's a block that has a title, and some content. The content spans multiple lines, each of them representing a Scene, Action, or Choice. Nodes hold all the narrative content of the game in a single branching path, and can be linked to and from other nodes, in order to build a conversation tree.
@@ -33,30 +60,6 @@ A single choice can contain multiple conditions, in which case they ALL need to 
 **Character**: Each scene contains **a character** that will be displayed on screen, along with their name and their current dialog line(s). Characters can have multiple poses, with one pose used at a time during a scene (`{{alice,happy}} I'm so happy!`). The `hidden` pose can be used on any character, allowing for a character to not appear on screen at all. When no pose is mentioned, the `default` pose will be used. When no character is mentioned, a default character ("The Narrator") will be used with a hidden pose. Characters and poses are referenced by their identifier (This is not correct: `{{The One-Eyed Monster,Very angry}} Rawr!`, this is correct: `{{one-eyed-monster,very-angry}} Rawr!`).
 
 **Approval**: Characters have an approval level, a number that usually describes **how much they like the player**. This is a common feature in dating games which is why it exists here in its own name, but it is simply a number variable at its heart so feel free to use it for something else. Like a power level, that goes over 9000.
-
-# Getting started
-The engine currently handles stories written in [Yarn](https://github.com/InfiniteAmmoInc/Yarn), and exported as a JSON file. Yarn is a dialogue editor that helps you build nodes and branching trees in a visual way, similar to Twine. In this template, a specific script syntax (**that slightly differs from the standard Yarn syntax**) is used, in order to provide an easy access to the features needed in a visual novel game. Check out the scripting syntax below for more information.
-The characters and places data are stored as JSON files that need to be edited by hand. Using a JSON editor (like http://www.jsoneditoronline.org/) or a text editor with syntax highlighting (Notepad++, Sublime Text) is strongly recommended.
-
-## Quickstart instructions
-* Save your story in `data/story.json`
-* Define your characters in `data/characters.json`
-* Define your places in `data/places.json`
-* Edit `css/scene.css` to define the appearance (position, size) of your characters (optional)
-* Edit `index.html` and `end.html` to create your own menu and ending screens (optional for now, but you should at least give a name to your game!)
-
-## Testing your game
-* If you are creating your game in an offline environement ("I am not a coder"):
-    * Launch `build.bat`. This will compile your JSON files into a single javascript file that will be loaded in the page. **You will need to do this everytime you change the content of the JSON files or your story, for the changes to appear in the game.** This might only work for Windows users. Sorry.
-    * Open `index.html` in your web browser to start the game, or open `game.html` to skip the menu page. 
-* If you are creating your game in a server environement ("I am a coder" or "I'm tired of launching the build script every 5 seconds" or "I'm using a Mac and the build script only works on Windows"):
-    * Edit `main.js` and follow the instructions to enable asynchronous data loading.
-    * Go to `your_server_address/index.html` in your browser to start the game, or `your_server_address/game.html` to skip the menu page.
-
-## Distributing your game
-Once you're done creating your game (🎉🎉🎉 congratulations 🎉🎉🎉), you might want to make it available online and show it to the world. As a web-based game, it simply needs to be hosted somewhere: a personal website or a game hosting website like [itch.io](http://itch.io) or [Gamejolt](http://gamejolt.com) for example.
-Specific instructions for these platforms can be found on their respective website, but the usual steps will require you to package all your files in a zip archive. Make sure you put all the game files in the archive. You don't have to include `build.dat` or this instructions file, the game will run without them.
-
 
 # Scripting syntax
 ## The simplest scene
