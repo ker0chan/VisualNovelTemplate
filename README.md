@@ -8,6 +8,42 @@ Characters and background art: [@LtEmi](https://twitter.com/LtEmi)
 
 [Demo/Tutorial/Example](https://ker0chan.github.io/VisualNovelTemplate) (yes, it's everything at once)
 ___
+# Table of Contents
+
+* [Disclaimer](#disclaimer)
+* [Getting started](#getting-started)
+	* [Quickstart instructions](#quickstart-instructions)
+	* [Testing your game](#testing-your-game)
+	* [Distributing your game](#distributing-your-game)
+* [Lexicon](#lexicon)
+* [Scripting syntax](#scripting-syntax)
+	* [The simplest scene](#the-simplest-scene)
+	* [Normal scene](#normal-scene)
+	* [Scene with actions](#scene-with-actions)
+	* [Multiple answers](#multiple-answers)
+	* [Non-branching multiple answers](#non-branching-multiple-answers)
+	* [Conditions](#conditions)
+	* [Multiple conditions](#multiple-conditions)
+	* [Ending choice](#ending-choice)
+	* [Comments](#comments)
+	* [Empty lines](#empty-lines)
+	* [Existing conditions](#existing-conditions)
+		* [Conditions on string variables](#conditions-on-string-variables)
+		* [Conditions on number variables](#conditions-on-number-variables)
+		* [Approval conditions](#approval-conditions)
+		* [Custom conditions](#custom-conditions)
+	* [Existing actions](#existing-actions)
+		* [Actions on string variables](#actions-on-string-variables)
+		* [Actions on number variables](#actions-on-number-variables)
+		* [Approval actions](#approval-actions)
+		* [Custom actions](#custom-actions)
+* [Customization](#customization)
+	* [Changing the appearance of the game](#changing-the-appearance-of-the-game)
+		* [CSS](#css)
+		* [HTML](#html)
+	* [Adding or editing features](#adding-or-editing-features)
+
+
 # Disclaimer
 Keep in mind that this was intended as a template/boilerplate code base to get a project started on the right tracks, rather than as a full-fledged engine. If your project needs features that differ completely from those presented here, you might want to dig into the code and add them yourself (or with the help of a programmer). Custom actions and stylesheets can give pretty good results to some extent, but reworking the core of the engine will probably be more stable/scalable/optimized in the long run.
 
@@ -19,9 +55,10 @@ The characters and places data are stored as JSON files that need to be edited b
 
 ## Quickstart instructions
 * Download this project as a [zip file](https://github.com/ker0chan/VisualNovelTemplate/archive/master.zip), or clone the repository
-* Save your story in `data/story.json`
+* Create a story using [Yarn](https://github.com/InfiniteAmmoInc/Yarn) and save it in `data/story.json`
 * Define your characters in `data/characters.json`
 * Define your places in `data/places.json`
+* Add images for your characters and places, probably in the `img` folder
 * Edit `css/scene.css` to define the appearance (position, size) of your characters (optional)
 * Edit `index.html` and `end.html` to create your own menu and ending screens (optional for now, but you should at least give a name to your game!)
 
@@ -35,7 +72,7 @@ The characters and places data are stored as JSON files that need to be edited b
 
 ## Distributing your game
 Once you're done creating your game (🎉🎉🎉 congratulations 🎉🎉🎉), you might want to make it available online and show it to the world. As a web-based game, it simply needs to be hosted somewhere: a personal website or a game hosting website like [itch.io](http://itch.io) or [Gamejolt](http://gamejolt.com) for example.
-Specific instructions for these platforms can be found on their respective website, but the usual steps will require you to package all your files in a zip archive. Make sure you put all the game files in the archive. You don't have to include `build.dat` or this instructions file, the game will run without them.
+Specific instructions for these platforms can be found on their respective website, but the usual steps will require you to package all your files in a zip archive. Make sure you put all the game files in the archive. You don't have to include `build.bat` or this instructions file, the game will run without them.
 
 
 # Lexicon
@@ -68,7 +105,7 @@ A single choice can contain multiple conditions, in which case they ALL need to 
 ```
 Hello World
 ```
-The Narrator says the words "Hello World". Clicking on it will goes to the next scene.
+The Narrator says the words "Hello World". Clicking on it goes to the next scene.
 
 ## Normal scene
 ```
@@ -146,7 +183,7 @@ Comments will be ignored when displaying the scene. Use them when your tree beco
 ```
 Empty lines are ignored. This example will result in four consecutive scenes with a single choice, with Alice seemingly losing her patience for no apparent reason.
 
-## Existing conditions:
+## Existing conditions
 ### Conditions on string variables
 ```
 [[We've done something to that door.|something]] <<string door exists>>
@@ -196,7 +233,7 @@ ___
 ```
 Checks it the character `bobby` and `max` have an approval level that is the highest of all the characters (note that multiple characters can have the same approval level, and can thus both be the highest).
 Sorry for the weird example, I thought having `max` as a character identifier was fun because I got to write "*max max*". Hopefully it's not too confusing.
-___
+### Custom conditions
 ```
 [[I don't see anything.|keep_watching]]
 [[Oh look, a shooting star!|make_a_wish]] <<random 75>>
@@ -206,25 +243,29 @@ Picks a random number between 0 and 99 (included), and checks if it's smaller th
 **This is a custom condition that serves as an example on how to add your own conditions, check out `js/custom-conditions.js` for more information.**
 
 ## Existing actions
+### Actions on string variables
 ```
 <<string door open>>
 ```
 Set the value of the variable `door` to "open" (note that the values can't contain spaces, otherwise only the first word will be considered as the value!)
-___
+
+### Actions on number variables
 ```
 <<number money = 5>>
 <<number money + 10>>
 <<number money - 3>>
 ```
 Set the value of `money` to 5, then add 10 to it, then substract 3. Yup, that's 12.
-___
+
+### Approval actions
 ```
 <<approval bobby = 420>>
 <<approval bobby + 10>>
 <<approval bobby - 100>>
 ```
 Sets the approval level of the character `bobby` to 420, before adding 10 and substracting 100 for no apparent reason. Make up your mind, Bobby.
-___
+
+### Custom actions
 ```
 <<screenshake 10>>
 ```
@@ -270,7 +311,7 @@ Styling the name of the place, depending on the active place:
 ### HTML
 The game area has a simple structure that can be seen in the `game.html` file. Do not delete the existing blocks as this can cause errors when playing the game (you can hide some of them with CSS if needed). Feel free to add more blocks to suit your needs: an approval meter, a space to display the amount of money you have, a clock or calendar...
 
-## Adding/editing features
+## Adding or editing features
 The available Actions and Conditions should cover most of the basic, usual needs of an adventure-style visual novel. Specific features can be added with the help of some javascript code.
 `js/custom-actions.js` and `js/custom-conditions.js` will let you define the behaviour of some custom tags that you can then use in your story. Both of these file contain at least one example to help you get started.
 
