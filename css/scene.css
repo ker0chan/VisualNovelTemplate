@@ -1,0 +1,32 @@
+.character
+{
+	position:absolute;
+	width:200px;
+	height:500px;
+	left:500px;
+	top:30px;
+	background-repeat:no-repeat;
+}
+
+#container[character="alice"] .character
+{
+	left:100px;
+}
+
+#container[character="default"] #characterName
+{
+	color:rgb(128, 232, 255);
+}
+#container[character="bobby"] #characterName
+{
+	color:rgb(255, 247, 128);
+}
+#container[character="alice"] #characterName
+{
+	color:rgb(255, 80, 150);
+}
+
+#container[place="street"] #placeName
+{
+	color: hotpink;
+}

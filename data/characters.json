@@ -1,0 +1,23 @@
+{
+  "default":{
+    "poses":{
+    },
+    "name":"Narrator"
+  },
+
+  "alice":{
+    "poses":{
+      "default":"img/VN_chara001_neutral.png",
+      "happy":"img/VN_chara001_happy.png"
+    },
+    "name":"Alice"
+  },
+
+  "bobby":{
+    "poses":{
+      "default":"img/VN_chara002_neutral.png",
+      "happy":"img/VN_chara002_happy.png"
+    },
+    "name":"Bobby"
+  }
+}

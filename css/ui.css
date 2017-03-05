@@ -1,0 +1,58 @@
+#container
+{
+	font-size:17px;
+	font-family: 'Nunito', sans-serif;
+	width:800px;
+	height:600px;
+	border:8px solid rgba(0,0,0,0.3);
+	border-radius:8px;
+}
+
+#choices
+{
+	position:absolute;
+	bottom:0px;
+	padding:10px;
+	padding-top:0px;
+	width: 780px;
+	left:0px;
+	border-top:1px solid rgba(255,255,255, 0.6);
+	background:rgba(0,0,0,0.8);
+}
+.choice
+{
+	cursor:pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	padding: 5px;
+	color:rgb(190,190,190);
+}
+
+#characterName
+{
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	color:rgb(190,190,190);
+	font-size:22px;
+	text-shadow:2px 2px 3px black;
+}
+#placeName
+{
+	position:absolute;
+	top:-1px;
+	left:6px;
+	font-family: 'Poiret One', cursive;
+	color:white;
+	padding:3px 20px;
+	border:1px solid rgba(255,255,255, 0.6);
+	background:rgba(0,0,0,0.8);
+}
+.choice:hover
+{
+	background:rgba(255,255,255,0.1);
+	color:white;
+}

@@ -1,0 +1,64 @@
+body
+{
+	background-color:rgb(110,110,110);
+	background-image:url('../img/defaultBackground.png');
+	font-family: 'Poiret One', sans-serif;
+	font-size: 5px;
+	background-size:100% 100%;
+}
+#container
+{
+	font-size:24px;
+	margin: 0 auto;
+	padding:10px 50px;
+	width:800px;
+	position:relative;
+	text-align:center;
+	color:white;
+	height:100%;
+}
+h1
+{
+	font-size:48px;
+	padding-top: 30px;
+	text-align:center;
+	color:white;
+	text-shadow:0px 0px 50px pink;
+}
+p
+{
+	margin: 20px;
+	font-size: 20px;
+}
+a
+{
+	color:rgb(255, 247, 128);
+}
+a.button
+{
+	font-size: 30px;
+	text-decoration: none;
+	color:rgb(128, 232, 255);
+	display:inline-block;
+	margin:20px auto;
+	padding:5px 40px;
+	border:1px solid rgb(128, 232, 255);
+	border-radius:7px;
+}
+a.button:hover
+{
+	text-shadow:0px 0px 8px white;
+	background:rgba(151, 128, 255, 0.4);
+}
+ul
+{
+	list-style-type:none;
+	font-size:18px;
+	padding: 0px;
+	margin: 20px;
+}
+li
+{
+	color:rgb(255, 80, 150);
+	margin: 5px;
+}		
