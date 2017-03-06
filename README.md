@@ -63,15 +63,15 @@ The characters and places data are stored as JSON files that need to be edited b
 * Edit `index.html` and `end.html` to create your own menu and ending screens (optional for now, but you should at least give a name to your game!)
 
 ## Testing your game
-* If you are creating your game in an offline environement ("I am not a coder"):
-    * Launch `build.bat`. This will compile your JSON files into a single javascript file that will be loaded in the page. **You will need to do this everytime you change the content of the JSON files or your story, for the changes to appear in the game.** This might only work for Windows users. Sorry.
-    * Open `index.html` in your web browser to start the game, or open `game.html` to skip the menu page. 
-* If you are creating your game in a server environement ("I am a coder" or "I'm tired of launching the build script every 5 seconds" or "I'm using a Mac and the build script only works on Windows"):
+* If you are creating your game in an offline environment ("I am not a coder"):
+    * Launch `build.bat` (Windows) or `build.sh` (Mac, Linux). This will compile your JSON files into a single javascript file that will be loaded in the page. **You will need to do this every time you change the content of the JSON files or your story for the changes to appear in the game.**
+    * Open `index.html` in your web browser to start the game, or open `game.html` to skip the menu page.
+* If you are creating your game in a server environment ("I am a coder" or "I'm tired of launching the build script every 5 seconds"):
     * Edit `main.js` and follow the instructions to enable asynchronous data loading.
     * Go to `your_server_address/index.html` in your browser to start the game, or `your_server_address/game.html` to skip the menu page.
 
 ## Distributing your game
-Once you're done creating your game (🎉🎉🎉 congratulations 🎉🎉🎉), you might want to make it available online and show it to the world. As a web-based game, it simply needs to be hosted somewhere: a personal website or a game hosting website like [itch.io](http://itch.io) or [Gamejolt](http://gamejolt.com) for example.
+Once you're done creating your game (🎉🎉🎉 congratulations 🎉🎉🎉), you might want to make it available online and show it to the world. As a web-based game, it simply needs to be hosted somewhere: a personal website or a game hosting website like [itch.io](http://itch.io) or [Gamejolt](http://gamejolt.com) or even [GitHub Pages](http://leereilly.net/2012/11/29/hosting-games-on-github.html), for example.
 Specific instructions for these platforms can be found on their respective website, but the usual steps will require you to package all your files in a zip archive. Make sure you put all the game files in the archive. You don't have to include `build.bat` or this instructions file, the game will run without them.
 
 
@@ -89,16 +89,18 @@ Specific instructions for these platforms can be found on their respective websi
 **Variable**: **A box that holds a value for later use**. String and Number variables respectively hold strings (`ending_unlocked`, `open`, `true`, `fancy`) or integer numbers (`0`, `100`, `-5`, `200000`). String values can't contain spaces. Number values will be parsed as integers, 10.0 is not allowed, neither is -3^10. Variables have an identifier that is used to reference them in actions or conditions.
 
 **Condition**: Controls the **circumstances under which a choice is made available** to the player. Some examples include:
--Checking if a string variable holds a given value ("Is the door locked?")
--Comparing the value of a number variable to some other value ("Does the player have more than 200 coins?")
--Checking the approval level of a character ("Does Bobby hate the player?")
+
+- Checking if a string variable holds a given value ("Is the door locked?")
+- Comparing the value of a number variable to some other value ("Does the player have more than 200 coins?")
+- Checking the approval level of a character ("Does Bobby hate the player?")
+
 A single choice can contain multiple conditions, in which case they ALL need to be true for the choice to be available.
 
-**Place**: A place where scenes are happening in. Places can be changed using an Action. They contain a name and an image, that are usually both displayed on screen during the game. This does not provide a player movement system (though you could probably add it with some custom code), it is only a way to change **the background** of the game during a playthrough. Places have an identifier that is used to reference them in actions.
+**Place**: A place where scenes are happening. Places can be changed using an Action. They contain a name and an image, that are usually both displayed on screen during the game. This does not provide a player movement system (though you could probably add it with some custom code), it is only a way to change **the background** of the game during a playthrough. Places have an identifier that is used to reference them in actions.
 
 **Character**: Each scene contains **a character** that will be displayed on screen, along with their name and their current dialog line(s). Characters can have multiple poses, with one pose used at a time during a scene (`{{alice,happy}} I'm so happy!`). The `hidden` pose can be used on any character, allowing for a character to not appear on screen at all. When no pose is mentioned, the `default` pose will be used. When no character is mentioned, a default character ("The Narrator") will be used with a hidden pose. Characters and poses are referenced by their identifier (This is not correct: `{{The One-Eyed Monster,Very angry}} Rawr!`, this is correct: `{{one-eyed-monster,very-angry}} Rawr!`).
 
-**Approval**: Characters have an approval level, a number that usually describes **how much they like the player**. This is a common feature in dating games which is why it exists here in its own name, but it is simply a number variable at its heart so feel free to use it for something else. Like a power level, that goes over 9000.
+**Approval**: Characters have an approval level, a number that usually describes **how much they like the player**. This is a common feature in dating games which is why it's defined here, but it is simply a number variable at its heart so feel free to use it for something else. Like a power level, that goes over 9000.
 
 # Scripting syntax
 ## The simplest scene
@@ -231,7 +233,7 @@ ___
 [[{{alice}} Bobby and I are meant for each other.|marry_bobby]] <<approval bobby max>>
 [[{{alice}} Max and I are meant for each other.|marry_max]] <<approval max max>>
 ```
-Checks it the character `bobby` and `max` have an approval level that is the highest of all the characters (note that multiple characters can have the same approval level, and can thus both be the highest).
+Checks if the character `bobby` and `max` have an approval level that is the highest of all the characters (note that multiple characters can have the same approval level, and can thus both be the highest).
 Sorry for the weird example, I thought having `max` as a character identifier was fun because I got to write "*max max*". Hopefully it's not too confusing.
 ### Custom conditions
 ```
@@ -319,7 +321,7 @@ Additionally, in `js/custom-display.js`, functions that are called at various st
 
 You can access any part of the engine code at any time, but the notable elements you might be looking for are:
 * `characters`: a Javascript object that holds the information on the characters. It contains the info that you provided in characters.json, along with the approval levels of each of these characters.
-* `places`: a Javascript object that holds the information on the places. It contains the info that provided in places.json.
+* `places`: a Javascript object that holds the information on the places. It contains the info provided in places.json.
 * `variables`: a Javascript object that holds the information on the variables you set and read with `<<string ...>>` and `<<number ...>>`.
 * `scenes`: a Javascript object that holds all the scenes extracted from the story.
 
@@ -337,4 +339,4 @@ function onSceneDisplayed(scene)
 }
 ```
 
-Finally, most of the code is commented in the other .js files, so if you are confident in your javascript programming skills, feel free to improve, refine or break any part of the code to fit your needs! 
+Finally, most of the code is commented in the other .js files, so if you are confident in your javascript programming skills, feel free to improve, refine or break any part of the code to fit your needs!
