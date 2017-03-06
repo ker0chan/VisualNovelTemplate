@@ -64,9 +64,9 @@ The characters and places data are stored as JSON files that need to be edited b
 
 ## Testing your game
 * If you are creating your game in an offline environement ("I am not a coder"):
-    * Launch `build.bat`. This will compile your JSON files into a single javascript file that will be loaded in the page. **You will need to do this everytime you change the content of the JSON files or your story, for the changes to appear in the game.** This might only work for Windows users. Sorry.
-    * Open `index.html` in your web browser to start the game, or open `game.html` to skip the menu page. 
-* If you are creating your game in a server environement ("I am a coder" or "I'm tired of launching the build script every 5 seconds" or "I'm using a Mac and the build script only works on Windows"):
+    * Launch `build.bat` (Windows) or `build.sh` (Mac, Linux). This will compile your JSON files into a single javascript file that will be loaded in the page. **You will need to do this everytime you change the content of the JSON files or your story, for the changes to appear in the game.**
+    * Open `index.html` in your web browser to start the game, or open `game.html` to skip the menu page.
+* If you are creating your game in a server environement ("I am a coder" or "I'm tired of launching the build script every 5 seconds"):
     * Edit `main.js` and follow the instructions to enable asynchronous data loading.
     * Go to `your_server_address/index.html` in your browser to start the game, or `your_server_address/game.html` to skip the menu page.
 
